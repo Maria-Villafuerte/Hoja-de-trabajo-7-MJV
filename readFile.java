@@ -16,10 +16,11 @@ import java.util.Stack;
  */
 
 public class readFile {
-  static ArrayList<String> total = new ArrayList<>(); 
+  static ArrayList<String> total = new ArrayList<>();
   static ArrayList<String> Espanol_Temp = new ArrayList<>();
   static ArrayList<String> Ingles_Temp = new ArrayList<>();
   static ArrayList<String> Frances_Temp = new ArrayList<>();
+  static ArrayList<String> oracion = new ArrayList<>();
 
 
   /**
@@ -58,6 +59,48 @@ public class readFile {
       return total;
   }
 
+  public static ArrayList<String> _readfile2(String fpath) {
+    try {
+      File myObj = new File(fpath);
+      Scanner myReader = new Scanner(myObj);
+
+      while (myReader.hasNextLine()) {
+        String data = myReader.nextLine();
+        oracion.add(data);
+      }
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+    return oracion;
+  }
+  static Scanner sc = new Scanner(System.in);
+
+  public int menu_idiomas (){
+    System.out.println("\t  1.) Español");
+    System.out.println("\t  2.) Ingles");
+    System.out.println("\t  3.) Frances");
+    int a= sc.nextInt();
+
+    if (!(a == 1 || a == 2 || a == 3)) {
+        System.out.println("Error ingresa un dato válido");
+        a= sc.nextInt();
+      if (!(a == 1 || a == 2 || a == 3)) {
+        Boolean no_ingresa = false;
+        while (!no_ingresa){
+          System.out.println("Error ingresa un dato válido");
+          a= sc.nextInt();
+          if (a == 1 || a == 2 || a == 3) {
+            no_ingresa = true;
+          }
+        }
+
+      }
+    }
+    return a;
+
+  }
 
   /**
    * Divide los datos en un arraylist de acuerdo al delimitador dado

@@ -1,15 +1,12 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Controlador {
+public class Diccionario {
     //Guardar datos
 
     //Crear un tree para cada idioma 
     String a;
     readFile read = new readFile();
-
-    PrioridadComparador<Integer> comparadroPrioridad = new PrioridadComparador<>();
-    Association<Integer, Palabra> extractorPrioridad = new Association<Integer, Palabra>();
 
     Comparator<Integer> intComparator = new Comparator<Integer>() {
         public int compare(Integer i1, Integer i2) {
@@ -67,6 +64,8 @@ public class Controlador {
         });
     }
 
+
+
     //Impimir los 3 árboles en in order
     public void imprimir_in_order(){
         In_Order(Arbol_Epañol, "Español");
@@ -76,7 +75,53 @@ public class Controlador {
         In_Order(Arbol_Frances, "Frances");
     }
 
-    //.add(new Palabra(1,"Hola"));
 
+    //Método para traducir una oración
+    ArrayList<String> Oracion_traducida = new ArrayList<>();
+
+    public void traducir_oracion(ArrayList<String> a, int idioma_de_oracion, int idioma_a_traducir){
+        //1. Español 2.ingles 3. Frances
+        Oracion_traducida.clear();
+        System.out.println(a);
+        BinarySearchTree<Integer, String> Arbol_de_idioma_de_la_oracion = new BinarySearchTree<>(intComparator, getKeyFunc);
+        BinarySearchTree<Integer, String> Arbol_de_idioma_de_la_traducion= new BinarySearchTree<>(intComparator, getKeyFunc);
+        if (idioma_de_oracion ==1){
+            Arbol_de_idioma_de_la_oracion = Arbol_Epañol;
+        } else if (idioma_de_oracion==2) {
+            Arbol_de_idioma_de_la_oracion = Arbol_Ingles;
+        }else if (idioma_de_oracion==3) {
+            Arbol_de_idioma_de_la_oracion = Arbol_Frances;
+        }
+        if (idioma_a_traducir ==1){
+           Arbol_de_idioma_de_la_traducion = Arbol_Epañol;
+        } else if (idioma_a_traducir==2) {
+            Arbol_de_idioma_de_la_traducion = Arbol_Ingles;
+        }else if (idioma_a_traducir==3) {
+            Arbol_de_idioma_de_la_traducion = Arbol_Frances;
+        }
+        //para saber que árbol usar
+
+        for (String Palabra:a) {
+            Palabra = Palabra.toLowerCase();
+            //Que la palabra si este en el diccionario
+            String palabra_a_buscar = Palabra;
+            Integer llave_de_palabra_a_buscar = Arbol_de_idioma_de_la_oracion.getKey(palabra_a_buscar);
+            String traduccion_de_palabra="";
+            if (llave_de_palabra_a_buscar != null){
+                traduccion_de_palabra = Arbol_de_idioma_de_la_traducion.search(llave_de_palabra_a_buscar);
+            } else if (Palabra.equals(".")) {
+                traduccion_de_palabra= ".";
+            } else {
+                traduccion_de_palabra = "*" +Palabra+ "*";
+            }
+            Oracion_traducida.add(traduccion_de_palabra);
+            //Que la palabra no este en el diccionario
+        }
+        //palabra.toLowerCase()
+        System.out.println("\nOración traducida:");
+        for (int i = 0; i < Oracion_traducida.size(); i++) {
+            System.out.print(Oracion_traducida.get(i) + " ");
+        }
+    }
 
 }

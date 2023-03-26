@@ -115,7 +115,7 @@ public class BinarySearchTree<K, V> {
 	public V search(K key) {
 		return (V) internalSearch(root, key);
 	}
-	
+
 	/**
 
 	Recursively searches the tree for the node with the specified key and returns its value
@@ -145,7 +145,39 @@ public class BinarySearchTree<K, V> {
 		
 		
 	}
-	
+	/**
+	 * Returns the key of the node with the specified value, or null if not found
+	 * @param value the value to search for
+	 * @return the key of the node with the specified value, or null if not found
+	 */
+	public K getKey(V value) {
+		return internalGetKey(root, value);
+	}
+
+	/**
+	 * Recursively searches the tree for the key of the node with the specified value and returns it
+	 * @param actual the node currently being compared
+	 * @param value the value to search for
+	 * @return the key of the node with the specified value, or null if not found
+	 */
+	private K internalGetKey(TreeNode<K, V> actual, V value) {
+		if (actual != null) {
+			if (value.equals(actual.getValue())) {
+				return actual.getKey();
+			} else {
+				K key = internalGetKey(actual.getLeft(), value);
+				if (key == null) {
+					key = internalGetKey(actual.getRight(), value);
+				}
+				return key;
+			}
+		} else {
+			return null;
+		}
+	}
+
+
+
 	public void InOrderTraversal(ITraversal<K, V> visitador) {
 		internalInOrder(root, visitador);
 	}
