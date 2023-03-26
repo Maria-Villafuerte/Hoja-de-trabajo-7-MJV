@@ -26,12 +26,14 @@ public class Diccionario {
     };
 
     //Creación de los tres árboles para el diccionario
+    BinarySearchTree<Integer, String> total = new BinarySearchTree<>(intComparator, getKeyFunc);
     BinarySearchTree<Integer, String> Arbol_Epañol = new BinarySearchTree<>(intComparator, getKeyFunc);
     BinarySearchTree<Integer, String> Arbol_Ingles = new BinarySearchTree<>(intComparator, getKeyFunc);
     BinarySearchTree<Integer, String> Arbol_Frances = new BinarySearchTree<>(intComparator, getKeyFunc);
 
 
     //Método que guarda todos los datos en los árboles
+    ArrayList<String> tottal = read.total;
     ArrayList<String> Espanol_Temp_en_cont = read.Espanol_Temp;
     ArrayList<String> Ingles_Temp_en_cont  = read.Ingles_Temp;
     ArrayList<String> Frances_Temp_en_cont  = read.Frances_Temp;
@@ -39,6 +41,11 @@ public class Diccionario {
         int cont = 1;
         for (String a:Espanol_Temp_en_cont) {
             Arbol_Epañol.insert(cont, a);
+            cont++;
+        }
+        cont=1;
+        for (String a:tottal) {
+            total.insert(cont, a);
             cont++;
         }
         cont =1;
@@ -73,6 +80,10 @@ public class Diccionario {
         In_Order(Arbol_Ingles, "Ingles");
         System.out.println("\n");
         In_Order(Arbol_Frances, "Frances");
+        System.out.println("\n");
+        In_Order(total, " de los 3 idiomas");
+        
+        
     }
 
 
