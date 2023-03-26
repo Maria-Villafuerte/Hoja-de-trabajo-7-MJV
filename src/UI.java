@@ -1,20 +1,21 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.lang.Thread;
+
 
 public class UI {
     static readFile read = new readFile();
     static Scanner sc = new Scanner(System.in);
     static Diccionario cont = new Diccionario();
     static ArrayList<String> total = new ArrayList<>();
-    static ArrayList<String> oracion_temp = read._readfile2("Archivo_de_Oración_a_traducir.txt");
+    static ArrayList<String> oracion_temp = read._readfile2("src\\Archivo_de_Oración_a_traducir.txt");
 
 
     public static void main(String[] args) {
         oracion_temp=read.split(oracion_temp, " ");
-        System.out.println("\n¡Bienvenidos a un diccionario inglés - español - francés!\n");
-        System.out.println("En este momento se leera el archivo de código...\n");
-        total = read._readfile("Archivo_de_Palabras.txt");
+        System.out.println("\n¡Bienvenidos a un diccionario inglés - español - francés!");
+        System.out.println("En este momento se leera el archivo de código...");
+        total = read._readfile("src\\Archivo_de_Palabras.txt");
         cont.guarda_en_arboles();
         System.out.println("Las palabras se han guardado en el diccionario");
         boolean salir = false;
@@ -51,5 +52,8 @@ public class UI {
 }
 }
 
-//C:\\Users\\villa\\Desktop\\Clases_S3\\Algoritmos\\Hoja-de-trabajo-7-MJV\\Archivo_de_Palabras
+//C:\\Users\\villa\\Desktop\\Clases_S3\\Algoritmos\\Hoja-de-trabajo-7-MJV\\src\\Archivo_de_Oración_a_traducir.txt
+//Archivo_de_Palabras.txt
+//C:\Users\villa\Desktop\Clases_S3\Algoritmos\Hoja-de-trabajo-7-MJV\src\Archivo_de_Oración_a_traducir.txt
+//C:\\Users\\villa\\Desktop\\Clases_S3\\Algoritmos\\Hoja-de-trabajo-7-MJV\\src\\Archivo_de_Palabras.txt
 //C:\\Users\\villa\\Desktop\\Clases_S3\\Algoritmos\\Hoja-de-trabajo-7-MJV\\Archivo_de_Oración_a_traducir
