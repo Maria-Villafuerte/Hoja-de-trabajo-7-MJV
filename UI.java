@@ -14,7 +14,9 @@ public class UI {
         System.out.println(read.Frances_Temp);
         System.out.println(total.get(0));
         System.out.println("\nEl programa ha terminado de interpretar las funciones\n");
-        //cont.prueba_dos();
+
+        cont.guarda_en_arboles();
+        cont.imprimir_in_order();
     }
 
 }
